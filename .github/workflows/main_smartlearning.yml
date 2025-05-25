@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - SmartLearning
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12.7'
+          python-version: '3.12'
 
       - name: Create and start virtual environment
         run: |
@@ -68,9 +68,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DE55443856824D52B7007E5E7546C727 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_69F60B3EE68841A88E14B3B6D9299587 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A6855364310A40E494A859963BE9ACC0 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_185BC5D53DBD4703B742274C048BB25E }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D5E5A8F1623D497C8FE0F339F36E941E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_94E72D93B7134F75BCE17E4897055941 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
