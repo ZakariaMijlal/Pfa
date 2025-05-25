@@ -1,0 +1,26 @@
+<h1>Professor Dashboard</h1>
+<p>Welcome, {{ user.username }}!</p>
+
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Log out</button>
+</form>
+
+<h2>Upload a PDF Course</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+
+<h2>Uploaded PDFs</h2>
+<ul>
+    {% for material in materials %}
+        <li>
+            <strong>{{ material.title }}</strong> — 
+            <a href="{{ material.file.url }}" target="_blank">View</a>
+        </li>
+    {% empty %}
+        <li>No PDFs uploaded yet.</li>
+    {% endfor %}
+</ul>
