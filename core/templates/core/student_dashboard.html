@@ -1,0 +1,20 @@
+<h1>Student Dashboard</h1>
+<p>Welcome, {{ user.username }}!</p>
+
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Log out</button>
+</form>
+
+<h2>Available Course PDFs</h2>
+<ul>
+    {% for material in materials %}
+        <li>
+            <strong>{{ material.title }}</strong> — 
+            <a href="{{ material.file.url }}" target="_blank">View</a> — 
+            <span>Uploaded by: {{ material.uploaded_by.username }}</span>
+        </li>
+    {% empty %}
+        <li>No PDFs available yet.</li>
+    {% endfor %}
+</ul>
